@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">CalculatorApplication</string>
+    <string name="so1">1</string>
+    <string name="so2">2</string>
+    <string name="so3">3</string>
+    <string name="so4">4</string>
+    <string name="so5">5</string>
+    <string name="so6">6</string>
+    <string name="so7">7</string>
+    <string name="so8">8</string>
+    <string name="so9">9</string>
+    <string name="so0">0</string>
+</resources>
