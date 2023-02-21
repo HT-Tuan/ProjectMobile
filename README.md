@@ -6,3 +6,4 @@
 
 ## Test Emulator
 ### Pixel 4 API 27
+### deadline1 hết ngày chủ nhật(25/2)
