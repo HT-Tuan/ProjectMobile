@@ -8,4 +8,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="gray">#B2B3B3</color>
+    <color name="mauso">#b4b4b4</color>
+    <color name="maudau">#641d43</color>
+    <color name="maunen">#2a263b</color>
 </resources>

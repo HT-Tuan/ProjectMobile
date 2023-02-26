@@ -10,4 +10,12 @@
     <string name="so8">8</string>
     <string name="so9">9</string>
     <string name="so0">0</string>
+    <string name="xoa">&lt;-</string>
+    <string name="xoahet">C</string>
+    <string name="tru">-</string>
+    <string name="cong">+</string>
+    <string name="nhan">*</string>
+    <string name="chia">/</string>
+    <string name="bang">=</string>
+    <string name="cham">.</string>
 </resources>
