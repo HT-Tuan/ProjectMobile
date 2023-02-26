@@ -4,18 +4,29 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <TextView
-        android:id="@+id/tv2"
+        android:id="@+id/tvPhepTinh"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:text="150"
+        android:layout_weight="0.7"
+        android:text=""
         android:textStyle="bold"
         android:textSize="50dp"
         android:padding="15dp"
         android:background="@color/maunen"
         android:textColor="@color/white"
         android:gravity="bottom|right"/>
-    
+    <TextView
+        android:id="@+id/tvkq"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.3"
+        android:text="0"
+        android:textStyle="bold"
+        android:textSize="50dp"
+        android:padding="15dp"
+        android:background="@color/maunen"
+        android:textColor="@color/white"
+        android:gravity="bottom|right"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -62,7 +73,7 @@
                 android:layout_margin="1dp"
                 android:backgroundTint="@color/mauso"/>
             <Button
-                android:id="@+id/xoa"
+                android:id="@+id/btXoa"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -76,7 +87,7 @@
                 android:layout_marginBottom="1dp"
                 android:backgroundTint="@color/maudau"/>
             <Button
-                android:id="@+id/xoahet"
+                android:id="@+id/btXoaHet"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -128,7 +139,7 @@
                 android:layout_margin="1dp"
                 android:backgroundTint="@color/mauso" />
             <Button
-                android:id="@+id/tru"
+                android:id="@+id/btTru"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -142,7 +153,7 @@
                 android:layout_marginBottom="1dp"
                 android:backgroundTint="@color/maudau" />
             <Button
-                android:id="@+id/chia"
+                android:id="@+id/btChia"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -194,7 +205,7 @@
                 android:layout_margin="1dp"
                 android:backgroundTint="@color/mauso" />
             <Button
-                android:id="@+id/cong"
+                android:id="@+id/btCong"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -208,7 +219,7 @@
                 android:layout_marginBottom="1dp"
                 android:backgroundTint="@color/maudau" />
             <Button
-                android:id="@+id/nhan"
+                android:id="@+id/btNhan"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -237,11 +248,11 @@
                 android:layout_margin="1dp"
                 android:backgroundTint="@color/mauso" />
             <Button
-                android:id="@+id/cham"
+                android:id="@+id/btCham"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="2"
-                android:text="@string/bang"
+                android:text="@string/cham"
                 android:textStyle="bold"
                 android:textSize="30dp"
                 android:padding="5dp"
@@ -249,11 +260,11 @@
                 android:backgroundTint="@color/mauso" />
 
             <Button
-                android:id="@+id/bang"
+                android:id="@+id/btBang"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="2"
-                android:text="@string/cham"
+                android:text="@string/bang"
                 android:textStyle="bold"
                 android:textSize="25dp"
                 android:padding="5dp"
