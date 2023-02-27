@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivityDemo extends AppCompatActivity {
 
-    float kq = 0;
+    double kq = 0;
     String toantu ="";
     boolean trangthaiTT = false;
 
@@ -48,9 +48,8 @@ public class MainActivityDemo extends AppCompatActivity {
     public void bt_delete(View view){
         TextView hienthi = (TextView)findViewById(R.id.tvkq);
         String chuoiKq = hienthi.getText().toString();
-        if(chuoiKq.length() > 1){
-            hienthi.setText(chuoiKq.substring(0,chuoiKq.length()-1));
-            kq = Float.parseFloat(hienthi.getText().toString());
+        if(chuoiKq.length() > 1 && !(Double.parseDouble(hienthi.getText().toString()) <=-1 && Double.parseDouble(hienthi.getText().toString()) >=-9)){
+            hienthi.setText(chuoiKq.substring(0, chuoiKq.length() - 1));
         }else{
             hienthi.setText("0");
         }
@@ -62,7 +61,11 @@ public class MainActivityDemo extends AppCompatActivity {
             click_Bang(view);
         }else {
             TextView hienthi = (TextView) findViewById(R.id.tvkq);
-            kq = Float.parseFloat(hienthi.getText().toString());
+            if(toantu.equals("-")){
+                kq = (-1)*Double.parseDouble(hienthi.getText().toString());
+            }else{
+                kq = Double.parseDouble(hienthi.getText().toString());
+            }
         }
         Button button = (Button)view;
         button.setBackgroundColor(Color.rgb(255,140,0));
@@ -74,11 +77,19 @@ public class MainActivityDemo extends AppCompatActivity {
         String chuoiKq = hienthi.getText().toString();
         switch (toantu){
             case "+":
-                kq = kq + Float.parseFloat(chuoiKq);
+                kq = kq + Double.parseDouble(chuoiKq);
                 HienThi(kq);
                 break;
             case "*":
-                kq = kq * Float.parseFloat(chuoiKq);
+                kq = kq * Double.parseDouble(chuoiKq);
+                HienThi(kq);
+                break;
+            case "-":
+                kq = kq - Double.parseDouble(chuoiKq);
+                HienThi(kq);
+                break;
+            case "/":
+                kq = kq / Double.parseDouble(chuoiKq);
                 HienThi(kq);
                 break;
             default:
@@ -87,7 +98,7 @@ public class MainActivityDemo extends AppCompatActivity {
         toantu = "";
         reset_Color();
     }
-    public void HienThi(float kq)
+    public void HienThi(double kq)
     {
         TextView hienthi = (TextView)findViewById(R.id.tvkq);
         if(kq == (int)kq)
@@ -95,7 +106,7 @@ public class MainActivityDemo extends AppCompatActivity {
             hienthi.setText(String.valueOf((int) kq));
         }
         else {
-            hienthi.setText(Float.toString(kq));
+            hienthi.setText(Double.toString(kq));
         }
     }
     void reset_Color()
