@@ -9,11 +9,20 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.Stack;
+
 public class MainActivity extends AppCompatActivity
         implements View.OnClickListener {
     private TextView tvPhepTinh, tvKq;
     private String pheptinh = "", kq = "0";
     private Button btn0, btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9, btnXoa, bntXoaHet, btnTru, btnCong, btnNhan, btnChia, btnCham, btnBang;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,11 +69,11 @@ public class MainActivity extends AppCompatActivity
         btnBang.setOnClickListener(this);
         Log.i("Assigned", "Assigned view with this Id");
     }
+
     @Override
     public void onClick(View view) {
-        Log.i("A button was CLICKED", "");
-        switch (view.getId())
-        {
+        Log.i("A button was CLICKED", "" + view.getId());
+        switch (view.getId()) {
             case R.id.bt0:
                 changePhepTinh(btn0);
                 break;
@@ -115,6 +124,7 @@ public class MainActivity extends AppCompatActivity
                 break;
             case R.id.btXoaHet:
                 xoaHet();
+                break;
             case R.id.btBang:
                 tinhtoan();
                 break;
@@ -124,37 +134,111 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    public void changePhepTinh(@NonNull Button btn){
-        if((pheptinh.endsWith("+") ||
-                pheptinh.endsWith("-")||
-                pheptinh.endsWith("*")||
+    public void changePhepTinh(@NonNull Button btn) {
+        if ((pheptinh.endsWith("+") ||
+                pheptinh.endsWith("-") ||
+                pheptinh.endsWith("*") ||
                 pheptinh.endsWith("/")
-            ) &&
-            (btn.getText().toString().trim().equals("+") ||
-             btn.getText().toString().trim().equals("-") ||
-             btn.getText().toString().trim().equals("*") ||
-             btn.getText().toString().trim().equals("/")
-            )
+        ) &&
+                (btn.getText().toString().trim().equals("+") ||
+                        btn.getText().toString().trim().equals("-") ||
+                        btn.getText().toString().trim().equals("*") ||
+                        btn.getText().toString().trim().equals("/")
+                )
         )
-            pheptinh = pheptinh.substring(0,pheptinh.length() - 1).trim();
+            pheptinh = pheptinh.substring(0, pheptinh.length() - 1).trim();
         this.pheptinh += btn.getText().toString().trim();
         Log.i("Clicked", "" + pheptinh);
         tvPhepTinh.setText(pheptinh);
     }
 
-    public void xoa(){
-        pheptinh = pheptinh.substring(0,pheptinh.length() - 1).trim();
+    public void xoa() {
+        pheptinh = pheptinh.substring(0, pheptinh.length() - 1).trim();
         tvPhepTinh.setText(pheptinh);
     }
 
-    public void xoaHet(){
+    public void xoaHet() {
         pheptinh = "";
-        tvPhepTinh.setText(pheptinh);
         kq = "0";
+        tvPhepTinh.setText(pheptinh);
         tvKq.setText(kq);
     }
 
-    public void tinhtoan(){
+    public void tinhtoan() {
+        if (pheptinh.endsWith("+") || pheptinh.endsWith("-") || pheptinh.endsWith("*") || pheptinh.endsWith("/"))
+            pheptinh = pheptinh.substring(0, pheptinh.length() - 1).trim();
+        String val = pheptinh;
+        Log.i("Tinh toan", "" + pheptinh);
+        double result = eval(pheptinh);
+//        double result = 0;
+        kq = String.valueOf(result);
+        Log.i("Ket qua", "" + kq);
+        tvPhepTinh.setText(pheptinh);
         tvKq.setText(kq);
     }
+
+    //eval function
+    public static double eval(final String str) {
+        return new Object() {
+            int pos = -1, ch;
+
+            void nextChar() {
+                ch = (++pos < str.length()) ? str.charAt(pos) : -1;
+                Log.i("nextChar", "" + ch + " : " + str.substring(0, pos));
+            }
+
+            boolean eat(int charToEat) {
+                if (ch == charToEat) {
+                    Log.i("eat", "" + charToEat + " : " + str.substring(0, pos));
+                    nextChar();
+                    return true;
+                }
+                Log.i("eat", "");
+                return false;
+            }
+
+            double parse() {
+                nextChar();
+                double x = parseExpression();
+                if (pos < str.length()) throw new RuntimeException("Unexpected: " + (char) ch + " : " + str.substring(0, pos));
+                Log.i("parse", ""+x + " : " + str.substring(0, pos));
+                return x;
+            }
+
+            double parseExpression() {
+                double x = parseTerm();
+                for (;;) {
+                    if (eat('+')) x += parseTerm(); // Addition
+                    else if (eat('-')) x -= parseTerm(); // Subtraction
+                    else {
+                        Log.i("parseExpression", ""+x + " : " + str.substring(0, pos));
+                        return x;
+                    }
+                }
+            }
+
+            double parseTerm() {
+                double x = parseFactor();
+                for (;;) {
+                    if (eat('*')) x *= parseFactor(); // Multiplication
+                    else if (eat('/')) x /= parseFactor(); // Division
+                    else return x;
+                }
+            }
+
+            double parseFactor() {
+                double x;
+                int startPos = this.pos;
+                if ((ch >= '0' && ch <= '9') || ch == '.') { // Numbers
+                    while ((ch >= '0' && ch <= '9') || ch == '.') nextChar();
+                    x = Double.parseDouble(str.substring(startPos, this.pos));
+                    Log.i("parseFactor", ""+x + " : " + str.substring(startPos, this.pos));
+                } else {
+                    throw new RuntimeException("Unexpected: " + (char) ch + " : " + str.substring(0, pos));
+                }
+                return x;
+            }
+        }.parse();
+    }
+
 }
