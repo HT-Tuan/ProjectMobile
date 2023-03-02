@@ -58,8 +58,7 @@ public class MainActivityDemo extends AppCompatActivity {
                 && !chuoiKq.equals("-Infinity")
                 && !chuoiKq.equals("NaN")
                 && chuoiKq.length() > 1
-                && !(Double.parseDouble(chuoiKq) <=-1
-                && Double.parseDouble(chuoiKq) >=-9)){
+                && !(Double.parseDouble(chuoiKq) <=-1 && Double.parseDouble(chuoiKq) >=-9)){
             hienthi.setText(chuoiKq.substring(0, chuoiKq.length() - 1));
         }else{
             hienthi.setText("0");
