@@ -20,7 +20,7 @@ import java.util.Stack;
 public class MainActivity extends AppCompatActivity
         implements View.OnClickListener {
     private TextView tvPhepTinh, tvKq;
-    private String pheptinh = "", kq = "0";
+    private String pheptinh = "0", kq = "0";
     private Button btn0, btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9, btnXoa, bntXoaHet, btnTru, btnCong, btnNhan, btnChia, btnCham, btnBang;
 
     @Override
@@ -158,7 +158,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void xoaHet() {
-        pheptinh = "";
+        pheptinh = "0";
         kq = "0";
         tvPhepTinh.setText(pheptinh);
         tvKq.setText(kq);

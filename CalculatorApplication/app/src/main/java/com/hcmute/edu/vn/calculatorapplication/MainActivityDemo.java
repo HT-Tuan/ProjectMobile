@@ -22,23 +22,25 @@ public class MainActivityDemo extends AppCompatActivity {
     public void Bt_Click(View view){
         TextView hienthi = (TextView)findViewById(R.id.tvkq);
 
-        if(hienthi.getText().equals("0") == true || trangthaiTT == true)
+        if(hienthi.getText().equals("0") || trangthaiTT)
         {
             hienthi.setText("");
         }
         trangthaiTT = false;
         Button button = (Button)view;
-        if(button.getText().toString().equals("."))
+        String ketQuaHienTai = hienthi.getText().toString();
+        String buttonHienTai = button.getText().toString();
+        if(buttonHienTai.equals("."))
         {
-            if(hienthi.getText().toString().contains(".") == false){
-                if(hienthi.getText().toString().equals("") == true) {
-                    hienthi.setText("0" + button.getText().toString());
+            if(!ketQuaHienTai.contains(".")){
+                if(ketQuaHienTai.equals("")) {
+                    hienthi.setText("0" + buttonHienTai);
                 }else{
-                    hienthi.setText(hienthi.getText().toString() + button.getText().toString());
+                    hienthi.setText(ketQuaHienTai + buttonHienTai);
                 }
             }
         }else{
-            hienthi.setText(hienthi.getText().toString() + button.getText().toString());
+            hienthi.setText(ketQuaHienTai + buttonHienTai);
         }
     }
     public void bt_Clear(View view){
@@ -52,7 +54,11 @@ public class MainActivityDemo extends AppCompatActivity {
     public void bt_delete(View view){
         TextView hienthi = (TextView)findViewById(R.id.tvkq);
         String chuoiKq = hienthi.getText().toString();
-        if(!hienthi.getText().toString().equals("Infinity") && !hienthi.getText().toString().equals("-Infinity") && chuoiKq.length() > 1 && !(Double.parseDouble(hienthi.getText().toString()) <=-1 && Double.parseDouble(hienthi.getText().toString()) >=-9)){
+        if(!chuoiKq.equals("Infinity")
+                && !chuoiKq.equals("-Infinity")
+                && chuoiKq.length() > 1
+                && !(Double.parseDouble(chuoiKq) <=-1
+                && Double.parseDouble(chuoiKq) >=-9)){
             hienthi.setText(chuoiKq.substring(0, chuoiKq.length() - 1));
         }else{
             hienthi.setText("0");
