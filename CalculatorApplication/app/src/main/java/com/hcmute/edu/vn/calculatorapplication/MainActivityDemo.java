@@ -31,7 +31,11 @@ public class MainActivityDemo extends AppCompatActivity {
         if(button.getText().toString().equals("."))
         {
             if(hienthi.getText().toString().contains(".") == false){
-                hienthi.setText(hienthi.getText().toString() + button.getText().toString());
+                if(hienthi.getText().toString().equals("") == true) {
+                    hienthi.setText("0" + button.getText().toString());
+                }else{
+                    hienthi.setText(hienthi.getText().toString() + button.getText().toString());
+                }
             }
         }else{
             hienthi.setText(hienthi.getText().toString() + button.getText().toString());
@@ -48,7 +52,7 @@ public class MainActivityDemo extends AppCompatActivity {
     public void bt_delete(View view){
         TextView hienthi = (TextView)findViewById(R.id.tvkq);
         String chuoiKq = hienthi.getText().toString();
-        if(chuoiKq.length() > 1 && !(Double.parseDouble(hienthi.getText().toString()) <=-1 && Double.parseDouble(hienthi.getText().toString()) >=-9)){
+        if(!hienthi.getText().toString().equals("Infinity") && !hienthi.getText().toString().equals("-Infinity") && chuoiKq.length() > 1 && !(Double.parseDouble(hienthi.getText().toString()) <=-1 && Double.parseDouble(hienthi.getText().toString()) >=-9)){
             hienthi.setText(chuoiKq.substring(0, chuoiKq.length() - 1));
         }else{
             hienthi.setText("0");
