@@ -56,6 +56,7 @@ public class MainActivityDemo extends AppCompatActivity {
         String chuoiKq = hienthi.getText().toString();
         if(!chuoiKq.equals("Infinity")
                 && !chuoiKq.equals("-Infinity")
+                && !chuoiKq.equals("NaN")
                 && chuoiKq.length() > 1
                 && !(Double.parseDouble(chuoiKq) <=-1
                 && Double.parseDouble(chuoiKq) >=-9)){
